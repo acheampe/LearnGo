@@ -2,8 +2,10 @@ package main
 
 import "fmt" // imports a package that contains the println func
 
+const englishHelloPrefix string = "Hello, "
+
 func hello(name string) string {
-	return "Hello, " + name
+	return englishHelloPrefix + name
 }
 
 func main() {
