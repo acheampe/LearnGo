@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-) // imports a package that contains the println func
+// imports a package that contains the println func
 
 const (
 	spanish = "Spanish"
@@ -35,6 +33,6 @@ func greetingPrefix(language string) (prefix string) {
 	return // returns prefix, since we have names our return value
 }
 
-func main() {
-	fmt.Println(Hello("Chris", "Spanish"))
-}
+// func main() {
+// 	fmt.Println(Hello("Chris", "Spanish"))
+// }
