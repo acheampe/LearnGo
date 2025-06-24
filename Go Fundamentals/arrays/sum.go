@@ -18,3 +18,7 @@ func Sum(nums []int) (total int) {
 
 // arrays in go must have a fixed length
 // to have varying length go has what we call slices
+
+func SumAll(arrToSum ...[]int) []int {
+	return nil
+}
