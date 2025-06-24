@@ -9,9 +9,12 @@ package main
 // }
 
 // introducing range
-func Sum(nums [5]int) (total int) {
-	for _, num := range nums {
+func Sum(nums []int) (total int) {
+	for _, num := range nums { // range allows iteration over an array
 		total += num
 	}
 	return
 }
+
+// arrays in go must have a fixed length
+// to have varying length go has what we call slices
