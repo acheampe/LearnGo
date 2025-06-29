@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -33,8 +34,11 @@ func TestSumAll(t *testing.T) {
 		got := SumAll(num1, num2)
 		want := []int{6, 5}
 
-		if got != want {
-			t.Errorf("got %v want %v given %v", got, want)
+		// cannot use equality operators with slices in go so we
+		// can use reflect.DeepEqual instead
+		if !reflect.DeepEqual(got, want) { // NOTE: reflect is not type safe
+			// it will compile comparisons between string and int so its use must be with care
+			t.Errorf("got %v want %v", got, want)
 		}
 	})
 }
