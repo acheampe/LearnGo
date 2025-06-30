@@ -28,3 +28,35 @@ func SumAll(arrToSum ...[]int) []int {
 	}
 	return sums
 }
+
+// Good for unknown size but more memory allocation
+// func SumAll(arrToSum ...[]int) []int {
+// 	var sums []int
+
+// 	for _, arr := range arrToSum {
+// 		sums = append(sums, Sum(arr)) // appending a new value to sum arr
+// 	}
+// 	return sums
+// }
+
+// func SumAllTails(arrToSum ...[]int) []int {
+// 	argLen := len(arrToSum)
+// 	tailSum := make([]int, argLen)
+// 	for i, arr := range arrToSum {
+// 		tailSum[i] = Sum(arr) - arr[0]
+// 	}
+// 	return tailSum
+// }
+
+func SumAllTails(arrToSum ...[]int) []int {
+	argLen := len(arrToSum)
+	tailSum := make([]int, argLen)
+	for i, arr := range arrToSum {
+		if len(arr) == 0 {
+			tailSum[i] = 0
+		} else {
+			tailSum[i] = Sum(arr[1:])
+		}
+	}
+	return tailSum
+}
