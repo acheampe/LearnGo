@@ -18,7 +18,6 @@ func Sum(nums []int) (total int) {
 
 // arrays in go must have a fixed length
 // to have varying length go has what we call slices
-
 func SumAll(arrToSum ...[]int) []int {
 	lenofArg := len(arrToSum)     // essentially defines how many args of arr are in function
 	sums := make([]int, lenofArg) // make function declares a slice of a defined length
