@@ -2,7 +2,7 @@ package main
 
 func numIslands(grid [][]byte) int {
 	var count, m, n int
-	mapped := make(map[[2]int]bool)
+	// mapped := make(map[[2]int]bool)
 
 	if len(grid) > 0 {
 		m = len(grid)
@@ -23,11 +23,12 @@ func numIslands(grid [][]byte) int {
 			return
 		}
 
-		if _, visited := mapped[[2]int{r, c}]; visited {
-			return
-		}
+		// if _, visited := mapped[[2]int{r, c}]; visited {
+		// 	return
+		// }
 
-		mapped[[2]int{r, c}] = true
+		// mapped[[2]int{r, c}] = true
+		grid[r][c] = '0'
 		for _, d := range directions {
 			dr, dc := r+d[0], c+d[1]
 			mapIsland(dr, dc)
@@ -37,7 +38,7 @@ func numIslands(grid [][]byte) int {
 
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
-			if _, visited := mapped[[2]int{i, j}]; !visited && grid[i][j] == '1' {
+			if grid[i][j] == '1' {
 				count++
 				mapIsland(i, j)
 			}
