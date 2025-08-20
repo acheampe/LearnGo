@@ -1,5 +1,7 @@
 package main
 
+//https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/pointers-and-errors
+
 import "fmt"
 
 // creating new types from existing types
