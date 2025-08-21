@@ -30,3 +30,5 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
 }
+
+// Next req is Withdraw functions
