@@ -27,8 +27,12 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 
 }
 
+func (w *Wallet) Withdraw(amount Bitcoin) {
+	w.balance -= amount
+}
+
 func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
 }
 
-// Next req is Withdraw functions
+// Refactor code
