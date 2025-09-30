@@ -10,7 +10,7 @@ func TestAdder(t *testing.T) {
 	sum = Add(2, 2)
 	expected := 4
 
-	// %q if we want it to print a string, %d if we want to print and integer
+	// %q if we want it to print a string, %d if we want to print an integer
 	if sum != expected {
 		t.Errorf("expected '%d' but got '%d'", expected, sum)
 	}

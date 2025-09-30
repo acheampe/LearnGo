@@ -13,7 +13,8 @@ import "strings"
 // 	return
 // }
 
-// strings are immutable so every concatenation involves copying memory to accomodate for new string
+// strings are immutable so every concatenation involves
+// copying memory to accomodate for new string
 func Repeat(character string, repeatCount int) string {
 	var repeated strings.Builder // library minimizes memory copying
 	for i := 0; i < repeatCount; i++ {

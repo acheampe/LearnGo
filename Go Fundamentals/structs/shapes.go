@@ -19,6 +19,7 @@ func Perimeter(rectangle Rectangle) float64 {
 	return 2 * (rectangle.Width + rectangle.Height)
 }
 
+// A method is a function with a reciever
 // recieverVariable, recieverName, methodName
 func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
