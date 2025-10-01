@@ -8,33 +8,52 @@ func TestWallet(t *testing.T) {
 
 	t.Run("deposit", func(t *testing.T) {
 		wallet := Wallet{}
-
 		wallet.Deposit(Bitcoin(10))
-
-		got := wallet.Balance()
-
-		// fmt.Printf("address of balance in test is %p \n", &wallet.balance)
-
-		// fmt.Printf("address of balance in test is %p \n", &wallet.balance)
-		want := Bitcoin(10)
-
-		if got != want {
-			t.Errorf("got %s want %s", got, want)
-		}
+		assertBalance(t, wallet, Bitcoin(10))
 	})
 
-	t.Run("withdraw", func(t *testing.T) {
+	t.Run("withdraw with funds", func(t *testing.T) {
+		wallet := Wallet{Bitcoin(20)}
+		err := wallet.Withdraw(Bitcoin(10))
 
-		wallet := Wallet{balance: Bitcoin(20)}
-
-		wallet.Withdraw(Bitcoin(10))
-
-		got := wallet.Balance()
-		want := Bitcoin(10)
-
-		if got != want {
-			t.Errorf("got %s want %s", got, want)
-		}
-
+		assertNoError(t, err)
+		assertBalance(t, wallet, Bitcoin(10))
 	})
+
+	t.Run("withdraw insufficient funds", func(t *testing.T) {
+		wallet := Wallet{Bitcoin(20)}
+		err := wallet.Withdraw(Bitcoin(100))
+
+		assertError(t, err, ErrInsufficientFunds)
+		assertBalance(t, wallet, Bitcoin(20))
+	})
+}
+
+func assertBalance(t testing.TB, wallet Wallet, want Bitcoin) {
+	t.Helper()
+	got := wallet.Balance()
+
+	if got != want {
+		t.Errorf("got %q want %q", got, want)
+	}
+}
+
+func assertNoError(t testing.TB, got error) {
+	t.Helper()
+	if got != nil {
+		t.Fatal("got an error but didn't want one")
+	}
+}
+
+func assertError(t testing.TB, got, want error) {
+	t.Helper()
+	// t.Fatal stops the test if it is called. without it,
+	// test will carry on to the next and panic due to nil pointer
+	if got == nil {
+		t.Fatal("didn't get an error but wanted one")
+	}
+
+	if got != want {
+		t.Errorf("got %q, want %q", got, want)
+	}
 }

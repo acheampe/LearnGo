@@ -2,7 +2,10 @@ package main
 
 //https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/pointers-and-errors
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // creating new types from existing types
 type Bitcoin int
@@ -27,8 +30,17 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 
 }
 
-func (w *Wallet) Withdraw(amount Bitcoin) {
+// In Go, errors are values
+var ErrInsufficientFunds = errors.New("cannot withdraw, insufficient funds")
+
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+
+	if amount > w.balance {
+		return ErrInsufficientFunds
+	}
+
 	w.balance -= amount
+	return nil
 }
 
 func (b Bitcoin) String() string {
